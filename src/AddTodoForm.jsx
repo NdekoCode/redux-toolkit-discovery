@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "./libs/store/redux";
+import { addTodo } from "./libs/store/todos/slice";
 
 const AddTodoForm = () => {
   const [text, setText] = useState("");
