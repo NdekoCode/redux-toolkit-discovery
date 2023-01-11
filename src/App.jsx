@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddTodoForm from "./AddTodoForm";
-import UseThemeContext from "./libs/store/context/ThemeContext";
+import UseThemeContext from "./libs/context/ThemeContext";
 import ThemeSwitcher from "./ThemeSwitcher";
 import TodoFooter from "./TodoFooter";
 import TodosList from "./TodosList";
@@ -51,7 +51,7 @@ const App = () => {
             <ThemeSwitcher />
           </div>
           <AddTodoForm addTodo={addTodo} />
-          <TodosList />
+          <TodosList todos={todos} />
 
           <TodoFooter todos={todos} />
         </div>

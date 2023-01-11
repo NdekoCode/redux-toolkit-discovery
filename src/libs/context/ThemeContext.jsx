@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useToggle } from "../../hooks/useToggle";
+import { useToggle } from "../hooks/useToggle";
 
 const ThemeContext = createContext();
 export const ThemeContextProvider = memo(({ children }) => {

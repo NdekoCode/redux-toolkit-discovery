@@ -1,5 +1,5 @@
 import React from "react";
-import UseThemeContext from "./libs/store/context/ThemeContext";
+import UseThemeContext from "./libs/context/ThemeContext";
 
 const ThemeSwitcher = () => {
   const { darkToggle, handleTheme } = UseThemeContext();
