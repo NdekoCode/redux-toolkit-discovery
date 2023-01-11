@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import AddTodoForm from "./AddTodoForm";
 import UseThemeContext from "./libs/context/ThemeContext";
 import ThemeSwitcher from "./ThemeSwitcher";
@@ -8,37 +9,7 @@ import TodossHeader from "./TodossHeader";
 
 const App = () => {
   const { theme } = UseThemeContext();
-
-  const [todos, setTodos] = useState([
-    { id: 1, text: "Faire les courses", done: false },
-    { id: 2, text: "Ménage !", done: true },
-  ]);
-
-  const addTodo = (text) => {
-    const newTodo = {
-      text,
-      id: Date.now(),
-      done: false,
-    };
-
-    setTodos([newTodo, ...todos]);
-  };
-
-  const deleteTodo = (id) => {
-    const filteredTodos = todos.filter((t) => t.id !== id);
-    setTodos(filteredTodos);
-  };
-
-  const toggleTodo = (task) => {
-    const newTodos = todos.map((t) => {
-      if (t.id === task.id) {
-        t.done = !task.done;
-        return t;
-      }
-      return t;
-    });
-    setTodos(newTodos);
-  };
+  const todos = useSelector((state) => console.log(state));
   return (
     <div
       className={`relative w-full min-h-screen bg-top bg-no-repeat bg-contain bg-bg-light dark:bg-[#181824] ${theme}`}
@@ -50,10 +21,10 @@ const App = () => {
             <h1 className="text-4xl font-bold text-white">T O D O</h1>
             <ThemeSwitcher />
           </div>
-          <AddTodoForm addTodo={addTodo} />
-          <TodosList todos={todos} />
+          <AddTodoForm />
+          <TodosList />
 
-          <TodoFooter todos={todos} />
+          <TodoFooter />
         </div>
       </div>
     </div>
