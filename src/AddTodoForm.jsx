@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "./libs/store/redux";
 
-const AddTodoForm = ({ addTodo }) => {
+const AddTodoForm = () => {
   const [text, setText] = useState("");
-
+  const dispatch = useDispatch();
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    addTodo(text);
+    dispatch(addTodo(text));
     setText("");
   };
   const handleChange = useCallback(
