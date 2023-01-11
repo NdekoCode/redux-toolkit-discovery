@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const TodoFooter = ({ todos }) => {
+const TodoFooter = () => {
+  const todos = useSelector((state) => state.todos);
   const undoneTodos = todos.filter((t) => t.done === false);
   return (
     <>
