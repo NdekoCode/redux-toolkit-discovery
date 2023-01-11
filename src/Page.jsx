@@ -3,10 +3,10 @@ import AddTodoForm from "./AddTodoForm";
 import UseThemeContext from "./libs/store/context/ThemeContext";
 import ThemeSwitcher from "./ThemeSwitcher";
 import TodoFooter from "./TodoFooter";
-import TodosList from "./TodosList";
-import TodossHeader from "./TodossHeader";
+import TodoItem from "./TodoItem";
+import TodosHeader from "./TodossHeader";
 
-const App = () => {
+const Page = () => {
   const { theme } = UseThemeContext();
 
   const [todos, setTodos] = useState([
@@ -43,7 +43,7 @@ const App = () => {
     <div
       className={`relative w-full min-h-screen bg-top bg-no-repeat bg-contain bg-bg-light dark:bg-[#181824] ${theme}`}
     >
-      <TodossHeader />
+      <TodosHeader />
       <div className="relative z-10 flex h-auto max-w-xl px-10 mx-auto bg-yellow-3000 md:mx-auto">
         <div className="w-full mt-20 text-left ">
           <div className="flex justify-between align-middle">
@@ -51,7 +51,14 @@ const App = () => {
             <ThemeSwitcher />
           </div>
           <AddTodoForm addTodo={addTodo} />
-          <TodosList />
+          {todos.map((task) => (
+            <TodoItem
+              key={task.id}
+              item={task}
+              toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
+            />
+          ))}
 
           <TodoFooter todos={todos} />
         </div>
@@ -60,4 +67,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Page;

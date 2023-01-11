@@ -2,3 +2,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*,
+*::before,
+*::after,
+button,
+input,
+textarea {
+  transition: background-color 0.25s, opacity 0.25s;
+}
+.dark {
+  background-color: #181824;
+}
