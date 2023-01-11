@@ -1,13 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteTodo, toggleTodo } from "./libs/store/todos/slice";
 
-const TodoItem = ({ item, toggleTodo, deleteTodo }) => {
+const TodoItem = ({ item }) => {
+  const dispatch = useDispatch();
   return (
     <div className="flex w-full h-16 px-6 bg-white dark:bg-input-dark  shadow dark:text-gray-300 rounded-t-lg">
       <button
         tabIndex={0}
         role="button"
         className="flex w-full text-lg leading-tight text-gray-700 align-middle  appearance-none focus:outline-none focus:shadow-outline dark:text-gray-300"
-        onClick={() => toggleTodo(item)}
+        onClick={() => dispatch(toggleTodo(item))}
       >
         <span className="w-6 h-6 my-auto mr-6">
           {item.done ? (
@@ -72,7 +75,7 @@ const TodoItem = ({ item, toggleTodo, deleteTodo }) => {
       <button
         className="w-6 h-6 my-auto ml-6 "
         data-index={0}
-        onClick={() => deleteTodo(item.id)}
+        onClick={() => dispatch(deleteTodo(item.id))}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width={18} height={18}>
           <path
