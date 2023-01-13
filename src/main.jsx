@@ -5,12 +5,12 @@ import { Provider } from "react-redux";
 import App from "./App";
 import "./index.css";
 import { ThemeContextProvider } from "./libs/context/ThemeContext";
-import store from "./libs/store/redux";
+import todoStore from "./libs/store/redux";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeContextProvider>
-      <Provider store={store}>
+      <Provider store={todoStore}>
         <App />
       </Provider>
     </ThemeContextProvider>

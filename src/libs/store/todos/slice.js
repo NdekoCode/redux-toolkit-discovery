@@ -1,8 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
 import actions from "./actions";
 const initialState = [
-  { id: 1, text: "Faire les courses", done: false },
-  { id: 2, text: "Ménage !", done: true },
+  {
+    id: uuid(),
+    todo: "Do something nice for someone I care about",
+    completed: true,
+    userId: 26,
+  },
+  {
+    id: uuid(),
+    todo: "Memorize the fifty states and their capitals",
+    completed: false,
+    userId: 48,
+  },
 ];
 const todoSlice = createSlice({
   name: "todo",
@@ -11,6 +22,5 @@ const todoSlice = createSlice({
     ...actions,
   },
 });
-
-export const { addTodo, toggleTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, completedTodo } = todoSlice.actions;
 export default todoSlice;

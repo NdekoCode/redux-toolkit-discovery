@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import AddTodoForm from "./AddTodoForm";
 import UseThemeContext from "./libs/store/context/ThemeContext";
 import ThemeSwitcher from "./ThemeSwitcher";
 import TodoFooter from "./TodoFooter";
+import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
 import TodosHeader from "./TodossHeader";
 
@@ -29,7 +29,7 @@ const Page = () => {
     setTodos(filteredTodos);
   };
 
-  const toggleTodo = (task) => {
+  const completedTodo = (task) => {
     const newTodos = todos.map((t) => {
       if (t.id === task.id) {
         t.done = !task.done;
@@ -50,12 +50,12 @@ const Page = () => {
             <h1 className="text-4xl font-bold text-white">T O D O</h1>
             <ThemeSwitcher />
           </div>
-          <AddTodoForm addTodo={addTodo} />
+          <TodoForm submitTodo={addTodo} />
           {todos.map((task) => (
             <TodoItem
               key={task.id}
               item={task}
-              toggleTodo={toggleTodo}
+              completedTodo={completedTodo}
               deleteTodo={deleteTodo}
             />
           ))}

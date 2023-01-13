@@ -1,25 +1,40 @@
 import { v4 as uuid } from "uuid";
 const addTodo = (state, action) => {
-  // {type:"todo/addTodo",payload:"Faire la cuisine"}
-  const newTask = {
-    id: uuid(),
-    text: action.payload,
-    done: false,
-  };
-  state.unshift(newTask);
-};
-const toggleTodo = (state, action) => {
-  // {type:"todo/toggleTodo",payload:{id:2,text:"Faire le menage",done:false}}
-  state = state.map((t) => {
-    if (t.id === action.payload.id) {
-      t.done = !action.payload.done;
-    }
-    return t;
-  });
+  if (JSON.stringify(action.payload) !== "{}") {
+    state.push({
+      id: uuid(),
+      todo: action.payload.todo,
+      // description: action.payload.todo,
+      completed: false,
+    });
+  }
 };
 const deleteTodo = (state, action) => {
-  // {type:"todo/deleteTodo",payload:2}
-  state = state.filter((t) => t.id !== action.payload);
+  console.log(action.payload);
+  state = state.filter((d) => d.id !== action.payload);
   return state;
 };
-export default { addTodo, deleteTodo, toggleTodo };
+
+const completedTodo = (state, action) => {
+  state = state.map((todo) => {
+    if (todo.id === action.payload) {
+      todo.completed = !todo.completed;
+      return todo;
+    }
+    return todo;
+  });
+};
+export const updateTodo = (state, action) => {
+  state = state.map((todo) => {
+    if (todo.id === action.payload) {
+      todo.completed = action.payload.completed;
+      todo.todo = action.payload.todo;
+    }
+    return todo;
+  });
+};
+export default {
+  addTodo,
+  deleteTodo,
+  completedTodo,
+};
