@@ -24,9 +24,10 @@ const completedTodo = (state, action) => {
     return todo;
   });
 };
-export const updateTodo = (state, action) => {
+const updateTodo = (state, action) => {
+  console.log(action);
   state = state.map((todo) => {
-    if (todo.id === action.payload) {
+    if (todo.id === action.payload.id) {
       todo.completed = action.payload.completed;
       todo.todo = action.payload.todo;
     }
@@ -37,4 +38,5 @@ export default {
   addTodo,
   deleteTodo,
   completedTodo,
+  updateTodo,
 };

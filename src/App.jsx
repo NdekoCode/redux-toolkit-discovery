@@ -20,7 +20,7 @@ const App = () => {
             <h1 className="text-4xl font-bold text-white">T O D O</h1>
             <ThemeSwitcher />
           </div>
-          <TodoForm submitTodo={addTodo} />
+          <TodoForm submitTodo={addTodo} add={true} />
           <TodosList />
 
           <TodoFooter />

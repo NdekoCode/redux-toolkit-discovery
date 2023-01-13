@@ -1,8 +1,9 @@
 import React from "react";
 
 import { useDispatch } from "react-redux";
+import CompletedIcon from "./CompletedIcon";
 import { completedTodo, deleteTodo } from "./libs/store/todos/slice";
-const TodoItemContent = ({ item }) => {
+const TodoItemContent = ({ item, todoUpdate }) => {
   const dispatch = useDispatch();
   return (
     <div className="flex w-full h-16 px-6 bg-white dark:bg-input-dark  shadow dark:text-gray-300 rounded-t-lg">
@@ -13,67 +14,34 @@ const TodoItemContent = ({ item }) => {
         onClick={() => dispatch(completedTodo(item.id))}
       >
         <span className="w-6 h-6 my-auto mr-6">
-          {item.completed ? (
-            <svg
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.0208 23.0417C18.1075 23.0417 23.0417 18.1075 23.0417 12.0208C23.0417 5.9342 18.1075 1 12.0208 1C5.9342 1 1 5.9342 1 12.0208C1 18.1075 5.9342 23.0417 12.0208 23.0417Z"
-                fill="url(#paint0_linear)"
-                stroke="url(#paint1_linear)"
-              />
-              <path
-                d="M8 12.1663L10.5837 14.75L16.3337 9"
-                stroke="white"
-                strokeWidth={2}
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear"
-                  x1={1}
-                  y1={1}
-                  x2={23}
-                  y2={23}
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#70A7FA" />
-                  <stop offset={1} stopColor="#B763EF" />
-                </linearGradient>
-                <linearGradient
-                  id="paint1_linear"
-                  x1={1}
-                  y1={1}
-                  x2="23.5"
-                  y2={23}
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#70A7FA" />
-                  <stop offset={1} stopColor="#B763EF" />
-                </linearGradient>
-              </defs>
-            </svg>
-          ) : (
-            <svg
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx={12} cy={12} r="11.5" stroke="#E4E4E4" />
-            </svg>
-          )}
+          <CompletedIcon completed={item.completed} />
         </span>
         <p className="flex flex-1 w-full my-auto align-middle border-none cursor-pointer input hover:text-blue-600">
           {item.completed ? item.todo : <s>{item.todo}</s>}
         </p>
       </button>
       <button
-        className="w-6 h-6 my-auto ml-6 "
+        className="w-6 h-6 my-auto ml-5"
+        onClick={() => todoUpdate()}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="feather feather-edit"
+        >
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+        </svg>
+      </button>
+      <button
+        className="w-6 h-6 my-auto ml-3"
         data-index={0}
         onClick={() => dispatch(deleteTodo(item.id))}
       >
