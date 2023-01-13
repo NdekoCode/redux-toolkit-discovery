@@ -24,7 +24,15 @@ const completedTodo = (state, action) => {
     return todo;
   });
 };
-
+export const updateTodo = (state, action) => {
+  state = state.map((todo) => {
+    if (todo.id === action.payload) {
+      todo.completed = action.payload.completed;
+      todo.todo = action.payload.todo;
+    }
+    return todo;
+  });
+};
 export default {
   addTodo,
   deleteTodo,
