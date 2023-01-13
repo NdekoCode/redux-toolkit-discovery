@@ -10,7 +10,6 @@ const addTodo = (state, action) => {
   }
 };
 const deleteTodo = (state, action) => {
-  console.log(action.payload);
   state.todos = state.todos.filter((d) => d.id !== action.payload);
   return state;
 };
@@ -25,7 +24,6 @@ const completedTodo = (state, action) => {
   });
 };
 const updateTodo = (state, action) => {
-  console.log(action);
   state.todos = state.todos.map((todo) => {
     if (todo.id === action.payload.id) {
       todo.completed = action.payload.completed;
