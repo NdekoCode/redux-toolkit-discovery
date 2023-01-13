@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 const addTodo = (state, action) => {
   if (JSON.stringify(action.payload) !== "{}") {
-    state.push({
+    state.todos.push({
       id: uuid(),
       todo: action.payload.todo,
       // description: action.payload.todo,
@@ -11,12 +11,12 @@ const addTodo = (state, action) => {
 };
 const deleteTodo = (state, action) => {
   console.log(action.payload);
-  state = state.filter((d) => d.id !== action.payload);
+  state.todos = state.todos.filter((d) => d.id !== action.payload);
   return state;
 };
 
 const completedTodo = (state, action) => {
-  state = state.map((todo) => {
+  state.todos = state.todos.map((todo) => {
     if (todo.id === action.payload) {
       todo.completed = !todo.completed;
       return todo;
@@ -26,7 +26,7 @@ const completedTodo = (state, action) => {
 };
 const updateTodo = (state, action) => {
   console.log(action);
-  state = state.map((todo) => {
+  state.todos = state.todos.map((todo) => {
     if (todo.id === action.payload.id) {
       todo.completed = action.payload.completed;
       todo.todo = action.payload.todo;
@@ -34,9 +34,13 @@ const updateTodo = (state, action) => {
     return todo;
   });
 };
+const filterTodo = (state, action) => {
+  state.filter = action.payload;
+};
 export default {
   addTodo,
   deleteTodo,
   completedTodo,
   updateTodo,
+  filterTodo,
 };
