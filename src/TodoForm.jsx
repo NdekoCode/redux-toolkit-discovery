@@ -15,7 +15,6 @@ const TodoForm = ({ initialValue, add = false, submitTodo, modifyTodo }) => {
       }
     }
   };
-  console.log(initialValue);
   const { todo, completed } = state;
   const dispatch = useDispatch();
   const handleSubmit = (evt) => {
@@ -40,7 +39,9 @@ const TodoForm = ({ initialValue, add = false, submitTodo, modifyTodo }) => {
   return (
     <div
       id="#input"
-      className="flex items-center w-full pr-0 h-16 px-6 my-12 text-lg leading-tight text-gray-700 align-middle bg-white rounded shadow appearance-none dark:bg-input-dark focus:outline-none focus:shadow-outline"
+      className={`flex items-center w-full pr-0 h-16 px-6 ${
+        add ? "my-12" : "border-b border-gray-50"
+      } text-lg leading-tight text-gray-700 align-middle bg-white rounded shadow appearance-none dark:bg-input-dark focus:outline-none focus:shadow-outline`}
     >
       <div className="mr-5">
         <label htmlFor="completed">
@@ -57,7 +58,9 @@ const TodoForm = ({ initialValue, add = false, submitTodo, modifyTodo }) => {
       </div>
       <form className="flex-1" onSubmit={handleSubmit} onKeyDown={keyEscEvent}>
         <input
-          className="w-full h-16 outline-none border-none input outline:none dark:bg-input-dark dark:text-gray-300 px-5"
+          className={`w-full h-16 outline-none border-none input outline:none dark:bg-input-dark dark:text-gray-300 px-5 transition-colors duration-200 ${
+            !add ? " bg-gray-200 text-gray-500 focus border-b" : ""
+          }`}
           id="task"
           type="text"
           value={todo}
