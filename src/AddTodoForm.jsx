@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "./libs/store/todos/slice";
 
 const AddTodoForm = () => {
-  const [text, setText] = useState("");
+  const [todo, setText] = useState("");
   const dispatch = useDispatch();
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(addTodo(text));
+    dispatch(addTodo(todo));
     setText("");
   };
   const handleChange = useCallback(
@@ -15,7 +15,7 @@ const AddTodoForm = () => {
       const value = evt.target.value;
       setText(value);
     },
-    [text]
+    [todo]
   );
   return (
     <div
@@ -71,7 +71,7 @@ const AddTodoForm = () => {
           className="w-full h-16 outline-none border-none input outline:none dark:bg-input-dark dark:text-gray-300 px-5"
           id="task"
           type="text"
-          value={text}
+          value={todo}
           placeholder="What to do ?"
           onChange={handleChange}
         />

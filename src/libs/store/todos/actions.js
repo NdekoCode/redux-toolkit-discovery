@@ -3,7 +3,7 @@ const addTodo = (state, action) => {
   if (JSON.stringify(action.payload) !== "{}") {
     state.push({
       id: uuid(),
-      todo: action.payload.todo,
+      todo: action.payload,
       description: action.payload.todo,
       completed: false,
     });
