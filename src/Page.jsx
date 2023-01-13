@@ -29,7 +29,7 @@ const Page = () => {
     setTodos(filteredTodos);
   };
 
-  const toggleTodo = (task) => {
+  const completedTodo = (task) => {
     const newTodos = todos.map((t) => {
       if (t.id === task.id) {
         t.done = !task.done;
@@ -55,7 +55,7 @@ const Page = () => {
             <TodoItem
               key={task.id}
               item={task}
-              toggleTodo={toggleTodo}
+              completedTodo={completedTodo}
               deleteTodo={deleteTodo}
             />
           ))}

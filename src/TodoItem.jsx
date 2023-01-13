@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteTodo, toggleTodo } from "./libs/store/todos/slice";
+import { completedTodo, deleteTodo } from "./libs/store/todos/slice";
 
 const TodoItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -10,10 +10,10 @@ const TodoItem = ({ item }) => {
         tabIndex={0}
         role="button"
         className="flex w-full text-lg leading-tight text-gray-700 align-middle  appearance-none focus:outline-none focus:shadow-outline dark:text-gray-300"
-        onClick={() => dispatch(toggleTodo(item))}
+        onClick={() => dispatch(completedTodo(item.id))}
       >
         <span className="w-6 h-6 my-auto mr-6">
-          {item.done ? (
+          {item.completed ? (
             <svg
               width={24}
               height={24}
@@ -69,7 +69,7 @@ const TodoItem = ({ item }) => {
           )}
         </span>
         <p className="flex flex-1 w-full my-auto align-middle border-none cursor-pointer input hover:text-blue-600">
-          {item.done ? item.text : <s>{item.text}</s>}
+          {item.completed ? item.todo : <s>{item.todo}</s>}
         </p>
       </button>
       <button
