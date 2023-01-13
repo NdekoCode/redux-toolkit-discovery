@@ -30,6 +30,6 @@ const todoSlice = createSlice({
     ...actions,
   },
 });
-export const { addTodo, deleteTodo, completedTodo, updateTodo, filterTodo } =
+export const { addTodo, deleteTodo, completedTodo, updateTodo, filterTodo,clearCompletedTodo } =
   todoSlice.actions;
 export default todoSlice;

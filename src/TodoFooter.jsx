@@ -1,7 +1,11 @@
 import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filteredTodo } from "./libs/store/todos/selectors";
-import { filters, filterTodo } from "./libs/store/todos/slice";
+import {
+  clearCompletedTodo,
+  filters,
+  filterTodo,
+} from "./libs/store/todos/slice";
 
 const TodoFooter = () => {
   const { filter } = useSelector((state) => state.todos);
@@ -41,16 +45,33 @@ const TodoFooter = () => {
             Completed
           </button>
         </div>
-        <p className="my-auto cursor-pointer hover:font-bold">
+        <button
+          className="my-auto cursor-pointer hover:font-bold"
+          onClick={() => dispatch(clearCompletedTodo())}
+        >
           Clear Completed
-        </p>
+        </button>
       </div>
       <div className="flex justify-center w-full h-16 px-6 mt-5 text-sm leading-tight text-gray-700 align-middle bg-white rounded-lg shadow appearance-none gap-x-5 sm:hidden dark:bg-input-dark focus:outline-none focus:shadow-outline dark:text-gray-300 ">
-        <p className="text-blue-600   hover:font-bold cursor-pointer my-auto">
+        <button className="text-blue-600   hover:font-bold cursor-pointer my-auto">
           All
-        </p>
-        <p className="  hover:font-bold cursor-pointer my-auto">Active</p>
-        <p className="  hover:font-bold cursor-pointer my-auto">Completed</p>
+        </button>
+        <button
+          onClick={() => dispatch(filterTodo(filters.ACTIVE))}
+          className={`${
+            filter === filters.ACTIVE ? "text-blue-600 font-bold " : ""
+          }hover:font-bold cursor-pointer my-auto`}
+        >
+          Active
+        </button>
+        <button
+          onClick={() => dispatch(filterTodo(filters.COMPLETED))}
+          className={`${
+            filter === filters.COMPLETED ? "text-blue-600 font-bold " : ""
+          }hover:font-bold cursor-pointer my-auto`}
+        >
+          Completed
+        </button>
       </div>
     </>
   );

@@ -35,10 +35,15 @@ const updateTodo = (state, action) => {
 const filterTodo = (state, action) => {
   state.filter = action.payload;
 };
+const clearCompletedTodo = (state, action) => {
+  state.todos = state.todos.filter((t) => !t.completed);
+  return state;
+};
 export default {
   addTodo,
   deleteTodo,
   completedTodo,
   updateTodo,
   filterTodo,
+  clearCompletedTodo,
 };
