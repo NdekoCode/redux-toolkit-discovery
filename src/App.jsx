@@ -1,8 +1,9 @@
 import React from "react";
-import AddTodoForm from "./AddTodoForm";
 import UseThemeContext from "./libs/context/ThemeContext";
+import { addTodo } from "./libs/store/todos/slice";
 import ThemeSwitcher from "./ThemeSwitcher";
 import TodoFooter from "./TodoFooter";
+import TodoForm from "./TodoForm";
 import TodosList from "./TodosList";
 import TodossHeader from "./TodossHeader";
 
@@ -19,7 +20,7 @@ const App = () => {
             <h1 className="text-4xl font-bold text-white">T O D O</h1>
             <ThemeSwitcher />
           </div>
-          <AddTodoForm />
+          <TodoForm submitTodo={addTodo} />
           <TodosList />
 
           <TodoFooter />

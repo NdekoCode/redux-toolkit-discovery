@@ -1,9 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useToggle } from "./libs/hooks/useToggle";
 import { completedTodo, deleteTodo } from "./libs/store/todos/slice";
 
 const TodoItem = ({ item }) => {
   const dispatch = useDispatch();
+  const [isModify, toggleModify] = useToggle(false);
   return (
     <div className="flex w-full h-16 px-6 bg-white dark:bg-input-dark  shadow dark:text-gray-300 rounded-t-lg">
       <button

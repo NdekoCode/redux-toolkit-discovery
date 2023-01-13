@@ -3,14 +3,15 @@ const addTodo = (state, action) => {
   if (JSON.stringify(action.payload) !== "{}") {
     state.push({
       id: uuid(),
-      todo: action.payload,
-      description: action.payload.todo,
+      todo: action.payload.todo,
+      // description: action.payload.todo,
       completed: false,
     });
   }
 };
 const deleteTodo = (state, action) => {
-  state = state.filter((d) => d.id !== action.payload.id);
+  console.log(action.payload);
+  state = state.filter((d) => d.id !== action.payload);
   return state;
 };
 
