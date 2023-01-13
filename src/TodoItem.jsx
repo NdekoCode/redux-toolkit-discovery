@@ -1,16 +1,19 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useToggle } from "./libs/hooks/useToggle";
+import { updateTodo } from "./libs/store/todos/slice";
 import TodoForm from "./TodoForm";
 import TodoItemContent from "./TodoItemContent";
 
 const TodoItem = ({ item }) => {
-  const dispatch = useDispatch();
   const [isModify, toggleModify] = useToggle(false);
   return (
     <>
       {isModify ? (
-        <TodoForm />
+        <TodoForm
+          initialValue={item}
+          submitTodo={updateTodo}
+          modifyTodo={toggleModify}
+        />
       ) : (
         <TodoItemContent todoUpdate={toggleModify} item={item} />
       )}
