@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import Form from "../components/Form";
+import PicCard from "../components/PicCard";
+import { useFetch } from "../libs/hooks/services";
 
 const Gallery = () => {
   const [picsData, setPicsData] = useState([]);
-
+  const [items, loading] = useFetch("http://localhost:5000/pictures");
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/pictures")
-      .then((res) => setPicsData(res.data));
+    setPicsData(items.data);
   }, []);
 
   return (
