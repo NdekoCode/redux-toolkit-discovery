@@ -18,7 +18,7 @@ textarea {
   font-family: "Inter", sans-serif;
   font-weight: 400;
 }
-body {
+.body {
   background: #fefffe;
   margin-left: 20px;
   max-width: 1150px;

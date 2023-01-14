@@ -1,5 +1,6 @@
 import React from "react";
 import UseThemeContext from "../libs/context/ThemeContext";
+import { addTodo } from "../libs/store/todos/slice";
 import ThemeSwitcher from "../ThemeSwitcher";
 import TodoFooter from "../TodoFooter";
 import TodoForm from "../TodoForm";

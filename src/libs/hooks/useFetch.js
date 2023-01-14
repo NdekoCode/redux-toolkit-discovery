@@ -3,7 +3,7 @@ import {
     useState
 } from "react";
 
-export function useFetch(url) {
+export function useFetch(url, setData = null) {
     const [state, setState] = useState({
         items: [],
         loading: true
@@ -14,6 +14,7 @@ export function useFetch(url) {
                 const response = await fetch(url);
                 const responseData = await response.json();
                 if (response.ok) {
+                    setData(responseData);
                     setState(state => ({
                         ...state,
                         items: responseData,
@@ -34,5 +35,11 @@ export function useFetch(url) {
             }
         })();
     }, [state.loading]);
-    return [state.items, state.loading];
+    if (!setData) {
+
+        return [state.items, state.loading];
+    }
+    return [
+        [], state.loading
+    ]
 }

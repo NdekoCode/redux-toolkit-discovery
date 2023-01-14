@@ -39,5 +39,5 @@ export function deleteItem(url) {
     const params = {
         method: "DELETE",
     }
-    return sendItem(url, data, params);
+    return sendItem(url, null, params);
 }
