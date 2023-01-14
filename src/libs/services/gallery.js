@@ -1,5 +1,5 @@
-export async function postItem(url, data, params = {}) {
-    const params = {
+async function sendItem(url, data, params = {}) {
+    const options = {
         method: "POST",
         headers: {
             'Content-Type': "application/json",
@@ -8,7 +8,7 @@ export async function postItem(url, data, params = {}) {
         ...params
     }
     try {
-        const response = await fetch(url, params);
+        const response = await fetch(url, options);
         const responseData = await response.json();
         return responseData;
 
@@ -16,4 +16,13 @@ export async function postItem(url, data, params = {}) {
         console.log(error);
     }
 
+}
+export function postItem(url, data) {
+    return sendItem(url, data);
+}
+export function putItem(url, data) {
+    const params = {
+        method: "PUT",
+    }
+    return sendItem(url, data, params);
 }

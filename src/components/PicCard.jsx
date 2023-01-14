@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-import axios from "axios";
-import Delete from "./Delete";
 import { FaRegEdit } from "react-icons/fa";
+import { putItem } from "../libs/services/gallery";
+import Delete from "./Delete";
 
 const PicCard = ({ pic }) => {
   const [edit, setEdit] = useState(false);
@@ -16,7 +16,7 @@ const PicCard = ({ pic }) => {
       photo: pic.photo,
     };
 
-    axios.put("http://localhost:5000/pictures/" + pic.id, data);
+    putItem("http://localhost:5000/pictures/" + pic.id, data);
   };
 
   return (

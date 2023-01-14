@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useRef } from "react";
+import { postItem } from "../libs/services/gallery";
 
 const Form = () => {
   const inputArt = useRef();
@@ -17,7 +17,7 @@ const Form = () => {
       )}`,
     };
 
-    axios.post("http://localhost:5000/pictures", data).then(() => {
+    postItem("http://localhost:5000/pictures", data).then(() => {
       formRef.current.reset();
     });
   };
