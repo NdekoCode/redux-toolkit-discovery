@@ -32,17 +32,15 @@ h1 {
   background: url("https://picsum.photos/800/300") center/cover;
   height: 110px;
   width: 500px;
-  border-radius: 14px;
+  border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 .form {
   backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.85);
-  height: inherit;
   width: inherit;
   transform: translateY(-19px);
-  padding: 14px;
 }
 form {
   display: grid;
@@ -51,10 +49,7 @@ form {
   gap: 10px;
 }
 input {
-  height: 20px;
-  padding: 6px;
-  border: 1px solid rgb(205, 205, 205);
-  border-radius: 10px;
+  outline: none;
 }
 input[type="submit"] {
   height: 100%;

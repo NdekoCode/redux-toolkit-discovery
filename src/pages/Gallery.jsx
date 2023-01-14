@@ -13,7 +13,7 @@ const Gallery = () => {
 
   return (
     <main className="body mt-5">
-      <h1>NFT Gallery</h1>
+      <h1 className="text-3xl font-bold my-3">NFT Gallery</h1>
       <Form />
       {loading ? (
         "Loading..."

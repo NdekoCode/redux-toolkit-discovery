@@ -24,11 +24,21 @@ const Form = () => {
 
   return (
     <div className="form-container">
-      <div className="form">
+      <div className="form  py-10 px-5">
         <h3>Enregistrer une nouvelle photo</h3>
         <form onSubmit={(e) => handleSubmit(e)} ref={formRef}>
-          <input type="text" placeholder="Artiste" ref={inputArt} />
-          <input type="text" placeholder="Année" ref={inputYear} />
+          <input
+            type="text"
+            className="px-3 py-2"
+            placeholder="Artiste"
+            ref={inputArt}
+          />
+          <input
+            type="text"
+            className="px-3 py-2"
+            placeholder="Année"
+            ref={inputYear}
+          />
           <input type="submit" value="Envoyer" />
         </form>
       </div>
