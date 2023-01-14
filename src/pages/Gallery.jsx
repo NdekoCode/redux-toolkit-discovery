@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "../components/Form";
 import PicCard from "../components/PicCard";
-import { useFetch } from "../libs/hooks/services";
+import { useFetch } from "../libs/hooks/useFetch";
 
 const Gallery = () => {
   const [picsData, setPicsData] = useState([]);
