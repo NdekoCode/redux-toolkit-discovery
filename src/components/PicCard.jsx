@@ -27,6 +27,7 @@ const PicCard = ({ pic }) => {
           {edit ? (
             <div>
               <input
+                className="px-2 py-1 shadow border rounded"
                 defaultValue={pic.artist}
                 ref={artistInput}
                 autoFocus
