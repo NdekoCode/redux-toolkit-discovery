@@ -7,6 +7,7 @@
     "start": "concurrently \"cd ../api && pnpm start\" \"pnpm run dev\"",
     "dev": "vite",
     "build": "vite build",
+    "server": "json-server ./src/libs/db.json -p 5000 -w -d 0",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -17,8 +18,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^1.2.1",
+    "json-server": "^0.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
     "redux": "^4.2.0",
