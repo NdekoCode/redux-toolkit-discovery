@@ -1,18 +1,26 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { putItem } from "../libs/services/gallery";
 import Delete from "./Delete";
 
 const PicCard = ({ pic }) => {
   const [edit, setEdit] = useState(false);
-  const artistInput = useRef();
+  const [pictureInput, setPictureInput] = useState({
+    artist: pic.artist,
+    year: pic.year,
+  });
+  const handleChange = ({ target }) => {
+    const name = target.name;
+    const value = target.value;
+    setPictureInput((d) => ({ ...d, [name]: value }));
+  };
 
   const handleEdit = () => {
     setEdit(false);
-
+    const { artist, year } = pictureInput;
     const data = {
-      artist: artistInput.current.value,
-      year: pic.year,
+      artist,
+      year,
       photo: pic.photo,
     };
 
@@ -25,21 +33,28 @@ const PicCard = ({ pic }) => {
       <div className="infos">
         <div className="title">
           {edit ? (
-            <div>
+            <div className=" flex items-center gap-x-1">
               <input
                 className="px-2 py-1 shadow border rounded"
                 defaultValue={pic.artist}
-                ref={artistInput}
+                handleChange={handleChange}
+                autoFocus
+              ></input>
+
+              <input
+                className="px-2 py-1 shadow border rounded"
+                defaultValue={pic.year}
+                handleChange={handleChange}
                 autoFocus
               ></input>
               <button onClick={() => handleEdit()}>Valider</button>
             </div>
           ) : (
-            <h4>
-              {artistInput.current ? artistInput.current.value : pic.artist}
-            </h4>
+            <>
+              <h4>{pictureInput ? pictureInput.artist : pic.artist}</h4>
+              <p> {pictureInput ? pictureInput.year : pic.year}</p>
+            </>
           )}
-          <p>{pic.year}</p>
         </div>
         <div className="btn-container">
           <div className="edit-icon" onClick={() => setEdit(!edit)}>
