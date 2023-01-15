@@ -48,6 +48,12 @@
       "year": "2021",
       "photo": "https://picsum.photos/400/470",
       "id": 9
+    },
+    {
+      "artist": "Sed sit blanditiis e",
+      "year": "Debitis nobis conseq",
+      "photo": "https://picsum.photos/400/339",
+      "id": 10
     }
   ]
 }

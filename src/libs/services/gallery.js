@@ -19,12 +19,22 @@ async function sendItem(url, data = null, params = {}) {
     try {
         const response = await fetch(url, options);
         const responseData = await response.json();
-        return responseData;
+        console.log(responseData);
+        if (response.ok) {
+            return responseData;
+        }
+        return null;
 
     } catch (error) {
         console.log(error);
     }
 
+}
+export function getItem(url) {
+    const params = {
+        method: "GET",
+    }
+    return sendItem(url, null, params);
 }
 export function postItem(url, data) {
     return sendItem(url, data);
