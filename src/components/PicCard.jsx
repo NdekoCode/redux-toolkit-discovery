@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { putItem } from "../libs/services/gallery";
 import Delete from "./Delete";
@@ -15,7 +15,7 @@ const PicCard = ({ pic }) => {
     setPictureInput((d) => ({ ...d, [name]: value }));
   };
 
-  const handleEdit = () => {
+  const handleEdit = useCallback(() => {
     setEdit(false);
     const { artist, year } = pictureInput;
     const data = {
@@ -25,7 +25,7 @@ const PicCard = ({ pic }) => {
     };
 
     putItem("http://localhost:5000/pictures/" + pic.id, data);
-  };
+  });
 
   return (
     <div className="pic-card">
@@ -33,22 +33,24 @@ const PicCard = ({ pic }) => {
       <div className="infos">
         <div className="title">
           {edit ? (
-            <div className=" flex items-center gap-x-1">
+            <form className=" flex items-center gap-x-1" onSubmit={handleEdit}>
               <input
                 className="px-2 py-1 shadow border rounded"
-                defaultValue={pic.artist}
-                handleChange={handleChange}
+                value={pictureInput.artist}
+                name="artist"
+                onChange={handleChange}
                 autoFocus
               ></input>
 
               <input
                 className="px-2 py-1 shadow border rounded"
-                defaultValue={pic.year}
-                handleChange={handleChange}
+                value={pictureInput.year}
+                onChange={handleChange}
+                name="year"
                 autoFocus
               ></input>
-              <button onClick={() => handleEdit()}>Valider</button>
-            </div>
+              <button>Valider</button>
+            </form>
           ) : (
             <>
               <h4>{pictureInput ? pictureInput.artist : pic.artist}</h4>
