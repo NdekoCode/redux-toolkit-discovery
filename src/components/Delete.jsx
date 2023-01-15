@@ -10,7 +10,7 @@ const Delete = ({ id }) => {
     dispatch(deletePicture(id));
   };
   return (
-    <div className="delete-icon" onClick={() => handleDelete()}>
+    <div className="delete-icon" onClick={handleDelete}>
       <AiOutlineDelete />
     </div>
   );
