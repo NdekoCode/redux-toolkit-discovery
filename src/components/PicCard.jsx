@@ -1,9 +1,12 @@
 import { useCallback, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { putItem } from "../libs/services/gallery";
+import { editPicture } from "../libs/store/gallery/picture.slice";
 import Delete from "./Delete";
 
 const PicCard = ({ pic }) => {
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
   const [pictureInput, setPictureInput] = useState({
     artist: pic.artist,
@@ -19,12 +22,15 @@ const PicCard = ({ pic }) => {
     setEdit(false);
     const { artist, year } = pictureInput;
     const data = {
+      id: pic.id,
       artist,
       year,
       photo: pic.photo,
     };
 
-    putItem("http://localhost:5000/pictures/" + pic.id, data);
+    putItem("http://localhost:5000/pictures/" + pic.id, data).then(() => {
+      dispatch(editPicture(data));
+    });
   });
 
   return (
