@@ -60,6 +60,12 @@
       "year": "",
       "photo": "https://picsum.photos/400/383",
       "id": 11
+    },
+    {
+      "artist": "Arick",
+      "year": "2023",
+      "photo": "https://picsum.photos/400/339",
+      "id": 12
     }
   ]
 }
