@@ -54,6 +54,12 @@
       "year": "Debitis nobis conseq",
       "photo": "https://picsum.photos/400/339",
       "id": 10
+    },
+    {
+      "artist": "",
+      "year": "",
+      "photo": "https://picsum.photos/400/383",
+      "id": 11
     }
   ]
 }

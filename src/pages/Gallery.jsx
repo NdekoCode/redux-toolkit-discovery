@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Form from "../components/Form";
 import PicCard from "../components/PicCard";
 import { useFetch } from "../libs/hooks/useFetch";
 import { setPicturesData } from "../libs/store/gallery/picture.slice";
+import { getPictures } from "../libs/store/gallery/selectors";
 
 const Gallery = () => {
   const dispatch = useDispatch();
-  const [picsData, setPicsData] = useState([]);
+  const loadData = (value) => {
+    setLoading(false);
+    dispatch(setPicturesData(value));
+  };
   const [loading, setLoading] = useState(true);
-  const load = useFetch("http://localhost:5000/pictures", setPicsData)[1];
-  useEffect(() => {
-    setLoading(load);
-    dispatch(setPicturesData(picsData));
-  }, [picsData]);
+  useFetch("http://localhost:5000/pictures", loadData);
+  const picsData = useSelector(getPictures);
 
   return (
     <main className="body mt-5">

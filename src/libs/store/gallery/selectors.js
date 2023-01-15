@@ -1,0 +1,1 @@
+export const getPictures = (state) => state.pictures;

@@ -13,8 +13,12 @@ export function useFetch(url, setData = null) {
             try {
                 const response = await fetch(url);
                 const responseData = await response.json();
+                console.log(responseData);
                 if (response.ok) {
-                    setData(responseData);
+                    if (setData) {
+                        setData(responseData);
+                    }
+
                     setState(state => ({
                         ...state,
                         items: responseData,
@@ -36,7 +40,6 @@ export function useFetch(url, setData = null) {
         })();
     }, [state.loading]);
     if (!setData) {
-
         return [state.items, state.loading];
     }
     return [
