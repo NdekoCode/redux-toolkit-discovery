@@ -8,12 +8,14 @@ import { getPictures } from "../libs/store/gallery/selectors";
 
 const Gallery = () => {
   const dispatch = useDispatch();
-  const loadData = (value) => {
-    setLoading(false);
-    dispatch(setPicturesData(value));
-  };
   const [loading, setLoading] = useState(true);
+  const loadData = (value) => {
+    dispatch(setPicturesData(value));
+    setLoading(false);
+  };
+
   useFetch("http://localhost:5000/pictures", loadData);
+
   const picsData = useSelector(getPictures);
 
   return (
