@@ -1,23 +1,37 @@
-import { useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { putItem } from "../libs/services/gallery";
+import { editPicture } from "../libs/store/gallery/picture.slice";
 import Delete from "./Delete";
 
 const PicCard = ({ pic }) => {
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
-  const artistInput = useRef();
+  const [pictureInput, setPictureInput] = useState({
+    artist: pic.artist,
+    year: pic.year,
+  });
+  const handleChange = ({ target }) => {
+    const name = target.name;
+    const value = target.value;
+    setPictureInput((d) => ({ ...d, [name]: value }));
+  };
 
-  const handleEdit = () => {
+  const handleEdit = useCallback(() => {
     setEdit(false);
-
+    const { artist, year } = pictureInput;
     const data = {
-      artist: artistInput.current.value,
-      year: pic.year,
+      id: pic.id,
+      artist,
+      year,
       photo: pic.photo,
     };
 
-    putItem("http://localhost:5000/pictures/" + pic.id, data);
-  };
+    putItem("http://localhost:5000/pictures/" + pic.id, data).then(() => {
+      dispatch(editPicture(data));
+    });
+  });
 
   return (
     <div className="pic-card">
@@ -25,21 +39,30 @@ const PicCard = ({ pic }) => {
       <div className="infos">
         <div className="title">
           {edit ? (
-            <div>
+            <form className=" flex items-center gap-x-1" onSubmit={handleEdit}>
               <input
                 className="px-2 py-1 shadow border rounded"
-                defaultValue={pic.artist}
-                ref={artistInput}
+                value={pictureInput.artist}
+                name="artist"
+                onChange={handleChange}
                 autoFocus
               ></input>
-              <button onClick={() => handleEdit()}>Valider</button>
-            </div>
+
+              <input
+                className="px-2 py-1 shadow border rounded"
+                value={pictureInput.year}
+                onChange={handleChange}
+                name="year"
+                autoFocus
+              ></input>
+              <button>Valider</button>
+            </form>
           ) : (
-            <h4>
-              {artistInput.current ? artistInput.current.value : pic.artist}
-            </h4>
+            <>
+              <h4>{pictureInput ? pictureInput.artist : pic.artist}</h4>
+              <p> {pictureInput ? pictureInput.year : pic.year}</p>
+            </>
           )}
-          <p>{pic.year}</p>
         </div>
         <div className="btn-container">
           <div className="edit-icon" onClick={() => setEdit(!edit)}>

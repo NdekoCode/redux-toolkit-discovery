@@ -13,6 +13,8 @@ const pictureSlice = createSlice({
 })
 export const {
     setPicturesData,
-    addPicture
+    addPicture,
+    deletePicture,
+    editPicture
 } = pictureSlice.actions;
 export default pictureSlice;
