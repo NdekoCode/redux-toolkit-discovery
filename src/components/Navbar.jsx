@@ -25,14 +25,6 @@ const Navbar = () => {
 
       Menu open: "hidden", Menu closed: "block"
     */}
-              REDUX
-              {/*
-      Icon when menu is open.
-
-      Heroicon name: outline/x-mark
-
-      Menu open: "block", Menu closed: "hidden"
-    */}
               <svg
                 className="hidden h-6 w-6"
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,14 +54,22 @@ const Navbar = () => {
                 {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                 <NavLink
                   to="/todos"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gray-900 text-white  px-3 py-2 rounded-md text-sm font-medium"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  }
                   aria-current="page"
                 >
                   Todos
                 </NavLink>
                 <NavLink
                   to="/gallery"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gray-900 text-white  px-3 py-2 rounded-md text-sm font-medium"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  }
                 >
                   Gallery
                 </NavLink>

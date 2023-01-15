@@ -1,11 +1,13 @@
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { postItem } from "../libs/services/gallery";
+import { addPicture } from "../libs/store/gallery/picture.slice";
 
 const Form = () => {
   const inputArt = useRef();
   const inputYear = useRef();
   const formRef = useRef();
-
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -19,6 +21,7 @@ const Form = () => {
 
     postItem("http://localhost:5000/pictures", data).then(() => {
       formRef.current.reset();
+      dispatch(addPicture(data));
     });
   };
 
